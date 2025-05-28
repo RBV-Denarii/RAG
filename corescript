@@ -175,7 +175,7 @@ with st.sidebar:
                     vector_store.add_documents(documents=splits)
 
                     # Create a custom RAG prompt template instead of using hub
-                    system_template = """You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.
+                    system_template = """You are a representative of Denarii Labs with access to meeting notes, client information, and past social content that should equip you to answer questions, write reports, and build tweets and other content as asked of you. Clearly indicate when you're using external context or general knowledge.
 
                     Context:
                     {context}
@@ -212,7 +212,7 @@ with st.sidebar:
                         # Create messages directly
                         messages = [
                             {"type": "system",
-                             "content": f"You are an assistant for question-answering tasks. Use the following pieces of retrieved context to answer the question. If you don't know the answer, just say that you don't know. Use three sentences maximum and keep the answer concise.\n\nContext:\n{docs_content}\n\nQuestion:\n{state['question']}\n\nAnswer:"},
+                             "content": f"You are a representative of Denarii Labs with access to meeting notes, client information, and past social content that should equip you to answer questions, write reports, and build tweets and other content as asked of you. Clearly indicate when you're using external context or general knowledge..\n\nContext:\n{docs_content}\n\nQuestion:\n{state['question']}\n\nAnswer:"},
                             {"type": "human", "content": state["question"]}
                         ]
                         response = llm.invoke(messages)
